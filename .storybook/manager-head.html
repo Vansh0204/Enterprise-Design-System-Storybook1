@@ -1,0 +1,29 @@
+<script>
+  // Make the dark mode toggle more prominent
+  setTimeout(() => {
+    // Find and enhance the dark mode toggle
+    const attemptEnhance = () => {
+      const toolbarButtons = document.querySelectorAll('[title="Change theme"]');
+      if (toolbarButtons.length > 0) {
+        toolbarButtons.forEach(button => {
+          button.style.border = '2px solid #4338ca';
+          button.style.borderRadius = '4px';
+        });
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately
+    if (!attemptEnhance()) {
+      // If not successful, retry a few times
+      let attempts = 0;
+      const interval = setInterval(() => {
+        if (attemptEnhance() || attempts > 10) {
+          clearInterval(interval);
+        }
+        attempts++;
+      }, 500);
+    }
+  }, 1000);
+</script> 

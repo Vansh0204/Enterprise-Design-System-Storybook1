@@ -1,0 +1,94 @@
+<style>
+  html.dark {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+  }
+  
+  html.dark .sb-show-main {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+  }
+
+  /* Force dark mode styles on body too */
+  html.dark body {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+  }
+
+  /* Fix content visibility in dark mode */
+  html.dark * {
+    color-scheme: dark;
+  }
+
+  /* Force specific colors for accordion items */
+  html.dark .accordion-item-title {
+    color: #f1f5f9 !important;
+  }
+
+  html.dark .accordion-item-content {
+    color: #f1f5f9 !important;
+  }
+
+  /* Apply dark mode to storybook UI elements */
+  html.dark .sb-show-main,
+  html.dark .docs-story {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+  }
+
+  html.dark .docblock-source {
+    background-color: #1e293b !important;
+  }
+
+  html.dark .docblock-argstable-head,
+  html.dark .docblock-argstable-body {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+  }
+  
+  /* Make sure the theme toggle button is always visible */
+  .os-scrollbar, 
+  .os-viewport, 
+  #storybook-preview-wrapper {
+    background: inherit !important;
+  }
+
+  /* Better visibility for dark mode toggle */
+  #storybook-preview-toolbar [title="Change background"] {
+    border: 2px solid #4338ca !important;
+    border-radius: 4px !important;
+  }
+</style>
+
+<script>
+  // Simplified dark mode script
+  (function() {
+    // Check for theme in URL
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const themeParam = params.get('globals');
+    
+    if (themeParam && themeParam.includes('theme:dark')) {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    }
+
+    // Watch for theme changes
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.key === 'storybook-channel') {
+        try {
+          const data = JSON.parse(event.data.data);
+          if (data.globals && data.globals.theme) {
+            if (data.globals.theme === 'dark') {
+              document.documentElement.classList.add('dark');
+              document.body.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+              document.body.classList.remove('dark');
+            }
+          }
+        } catch (e) {}
+      }
+    });
+  })();
+</script> 
