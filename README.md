@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# Enterprise Design System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A scalable, reusable design system built with React, TypeScript, TailwindCSS, and Storybook.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- Token-based color system
+- WCAG-compliant accessibility 
+- Responsive components
+- Typed props with TypeScript
+- Interactive documentation with Storybook
 
-### `npm start`
+## 📦 Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 🎨 Color System
+- Token-based color system with:
+  - Primary, Secondary, and Tertiary color palettes
+  - Neutral palette for text, backgrounds, and borders
+  - Semantic colors (Success, Info, Warning, Error)
+  - Surface and background colors
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 📊 Data Display Components
+- **Accordion**: Expandable content panels for organizing information
+- **Tag/Badge**: Compact elements for labels, categories, and statuses
 
-### `npm test`
+### 🧭 Navigation Components
+- **Tabs**: Content organization with different style variants
+- **TopNavigation**: Responsive navigation bar with mobile support
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+- **React**: UI component library
+- **TypeScript**: Type safety and improved developer experience
+- **TailwindCSS**: Utility-first CSS framework
+- **Storybook**: Component documentation and development environment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone <repository-url>
+cd design-system
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Development
 
-### `npm run eject`
+```bash
+npm run storybook      # Start Storybook
+npm run build          # Build the project
+npm run build-storybook # Build Storybook static site
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 📚 Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Accordion Component
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```jsx
+import { Accordion, AccordionItem } from './components/data-display/Accordion';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<Accordion>
+  <AccordionItem title="Section 1">
+    Content for section 1
+  </AccordionItem>
+  <AccordionItem title="Section 2">
+    Content for section 2
+  </AccordionItem>
+</Accordion>
+```
 
-## Learn More
+### Tag Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+import { Tag } from './components/data-display/Tag';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<Tag>Default Tag</Tag>
+<Tag variant="primary" isPill>Primary Pill</Tag>
+<Tag variant="success" icon={<CheckIcon />}>Completed</Tag>
+<Tag variant="error" dismissible onDismiss={() => handleDismiss()}>Error</Tag>
+```
+
+### Tabs Component
+
+```jsx
+import { Tabs, Tab } from './components/navigation/Tabs';
+
+<Tabs variant="underline">
+  <Tab id="tab1" label="First Tab">
+    Content for first tab
+  </Tab>
+  <Tab id="tab2" label="Second Tab">
+    Content for second tab
+  </Tab>
+</Tabs>
+```
+
+### TopNavigation Component
+
+```jsx
+import { TopNavigation } from './components/navigation/TopNavigation';
+
+<TopNavigation
+  brand={<Logo />}
+  items={[
+    { id: 'home', label: 'Home', href: '/', isActive: true },
+    { id: 'products', label: 'Products', href: '/products' },
+    { 
+      id: 'services', 
+      label: 'Services',
+      subItems: [
+        { id: 'consulting', label: 'Consulting', href: '/services/consulting' },
+        { id: 'development', label: 'Development', href: '/services/development' }
+      ]
+    }
+  ]}
+  actions={<Button>Sign In</Button>}
+/>
+```
+
+## 🧪 Accessibility
+
+- Proper color contrast ratios
+- Keyboard navigation support
+- ARIA attributes
+- Focus management
+- Screen reader support
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Responsive layouts
+- Touch-friendly interactions
+
+## 🌓 Theme Support
+
+**Note:**
+This design system currently supports **light mode only**.
+
+## 📃 License
+
+MIT
